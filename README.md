@@ -21,6 +21,7 @@ Reiniciar Jogo: Opção para reiniciar o quiz após o término, incentivando o u
 
 **Como Executar**
 Clone o repositório:
+
 bash
 Copiar código
 git clone https://github.com/seu-usuario/quiz-matematica.git
