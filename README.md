@@ -20,28 +20,24 @@ Reiniciar Jogo: Opção para reiniciar o quiz após o término, incentivando o u
 /assets: Imagens e recursos estáticos (caso você adicione algum recurso visual no futuro).
 
 **Como Executar**
+
 Clone o repositório:
 
-bash
-Copiar código
 git clone https://github.com/seu-usuario/quiz-matematica.git
+
 Navegue para o diretório do projeto:
 
-bash
-Copiar código
+
 cd quiz-matematica
+
 Instale as dependências:
 
-bash
-Copiar código
 npm install
+
 Execute o aplicativo:
 
-bash
-Copiar código
 npx react-native run-android
+
 ou
 
-bash
-Copiar código
 npx react-native run-ios
