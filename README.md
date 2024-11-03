@@ -1,7 +1,7 @@
 **Quiz de Matemática**
 Este repositório contém o código para um aplicativo de Quiz de Matemática desenvolvido em React Native. Este projeto foi criado com o objetivo de oferecer uma maneira divertida e interativa de testar e melhorar conhecimentos matemáticos básicos.
 
-__ Descrição __
+__Descrição__
 O Quiz de Matemática é um aplicativo simples e intuitivo onde os usuários podem responder a perguntas aleatórias de matemática e receber pontuações com base em suas respostas. Cada pergunta é gerada aleatoriamente, cobrindo operações básicas como adição, subtração, multiplicação e divisão. Ao final do jogo, o usuário pode visualizar sua pontuação final e reiniciar o quiz para tentar melhorar o resultado.
 
 Funcionalidades
