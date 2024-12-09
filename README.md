@@ -36,8 +36,4 @@ npm install
 
 Execute o aplicativo:
 
-npx react-native run-android
-
-ou
-
-npx react-native run-ios
+npx expo start

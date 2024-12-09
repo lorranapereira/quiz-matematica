@@ -11,7 +11,6 @@ const CadastroScreen = ({ navigateTo }) => {
       return;
     }
 
-    // Navegar para a tela "Jogo" e passar os dados do usuário
     navigateTo('Jogo', { userName: name, userEmail: email });
   };
 
