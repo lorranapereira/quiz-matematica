@@ -1,18 +1,42 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import Cadastro from './src/screens/Cadastro';
-import Jogo from './src/screens/Jogo';
-
-const Stack = createStackNavigator();
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import CadastroScreen from './src/screens/Cadastro';
+import JogoScreen from './src/screens/Jogo';
+import FinalScreen from './src/screens/Final';
 
 export default function App() {
+  const [currentScreen, setCurrentScreen] = useState('Cadastro');
+  const [userData, setUserData] = useState({});
+  const [gameData, setGameData] = useState({});
+
+  const navigateTo = (screen, data = {}) => {
+    if (screen === 'Jogo' || screen === 'Cadastro') {
+      setUserData(data);
+    }
+    if (screen === 'Final') {
+      setGameData(data);
+    }
+    setCurrentScreen(screen);
+  };
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Cadastro">
-        <Stack.Screen name="Cadastro" component={Cadastro} />
-        <Stack.Screen name="Jogo" component={Jogo} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View style={{ flex: 1 }}>
+      {currentScreen === 'Cadastro' && <CadastroScreen navigateTo={navigateTo} />}
+      {currentScreen === 'Jogo' && (
+        <JogoScreen
+          navigateTo={navigateTo}
+          userName={userData.userName}
+          userEmail={userData.userEmail}
+        />
+      )}
+      {currentScreen === 'Final' && (
+        <FinalScreen
+          navigateTo={navigateTo}
+          userName={gameData.userName}
+          userEmail={gameData.userEmail}
+          score={gameData.score}
+        />
+      )}
+    </View>
   );
 }

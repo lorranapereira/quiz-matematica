@@ -37,16 +37,14 @@ const generateRandomQuestion = () => {
   };
 };
 
-const JogoScreen = ({ userName, userEmail }) => {
+const JogoScreen = ({ userName, userEmail, navigateTo }) => {
   const [gameStarted, setGameStarted] = useState(false);
-  const [gameEnded, setGameEnded] = useState(false);
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [questionNumber, setQuestionNumber] = useState(0);
 
   const startGame = () => {
     setGameStarted(true);
-    setGameEnded(false);
     setScore(0);
     setQuestionNumber(1);
     setCurrentQuestion(generateRandomQuestion());
@@ -56,28 +54,29 @@ const JogoScreen = ({ userName, userEmail }) => {
     if (selectedAnswer === currentQuestion.correctAnswer) {
       setScore(score + 1);
     } else {
-      setScore(score - 1);
+      Alert.alert('Resposta errada', `A resposta correta era ${currentQuestion.correctAnswer}`);
     }
 
     if (questionNumber < 5) {
       setQuestionNumber(questionNumber + 1);
       setCurrentQuestion(generateRandomQuestion());
     } else {
-      setGameEnded(true);
-      setGameStarted(false);
+      // Redirecionar para a página de fim de jogo
+      navigateTo('Final', { userName, userEmail, score });
     }
   };
 
   return (
     <View style={styles.container}>
-      {!gameStarted && !gameEnded && (
+      {!gameStarted && (
         <>
           <Text style={styles.message}>Olá, {userName}!</Text>
           <Button title="Iniciar Jogo" onPress={startGame} />
+          <Button title="Voltar ao Cadastro" onPress={() => navigateTo('Cadastro')} />
         </>
       )}
 
-      {gameStarted && !gameEnded && (
+      {gameStarted && (
         <>
           <Text style={styles.message}>Questão {questionNumber} de 5</Text>
           <Text style={styles.question}>{currentQuestion?.question}</Text>
@@ -91,15 +90,6 @@ const JogoScreen = ({ userName, userEmail }) => {
             </TouchableOpacity>
           ))}
           <Text style={styles.score}>Pontuação: {score}</Text>
-        </>
-      )}
-
-      {gameEnded && (
-        <>
-          <Text style={styles.message}>Fim de jogo!</Text>
-          <Text style={styles.score}>Jogador(a): {userName} E-mail: {userEmail}</Text>
-          <Text style={styles.message}>Sua pontuação final foi: {score}</Text>
-          <Button title="Reiniciar Jogo" onPress={startGame} />
         </>
       )}
     </View>

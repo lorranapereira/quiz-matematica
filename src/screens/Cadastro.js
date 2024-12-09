@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
-import JogoScreen from './Jogo';
 
-const CadastroScreen = ({ navigation }) => {
+const CadastroScreen = ({ navigateTo }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [isRegistered, setIsRegistered] = useState(false);
 
   const handleRegister = () => {
     if (name.length === 0 || email.length === 0) {
@@ -13,36 +11,31 @@ const CadastroScreen = ({ navigation }) => {
       return;
     }
 
-    setIsRegistered(true);
+    // Navegar para a tela "Jogo" e passar os dados do usuário
+    navigateTo('Jogo', { userName: name, userEmail: email });
   };
 
   return (
     <View style={styles.container}>
-      {isRegistered ? (
-        <JogoScreen userName={name} userEmail={email} /> // Usa JogoScreen ao invés de Jogo
-      ) : (
-        <>
-          <Text style={styles.title}>Cadastro</Text>
+      <Text style={styles.title}>Cadastro</Text>
 
-          <TextInput
-            style={styles.input}
-            placeholder="Digite seu nome"
-            value={name}
-            onChangeText={(text) => setName(text)}
-          />
+      <TextInput
+        style={styles.input}
+        placeholder="Digite seu nome"
+        value={name}
+        onChangeText={(text) => setName(text)}
+      />
 
-          <TextInput
-            style={styles.input}
-            placeholder="Digite seu e-mail"
-            value={email}
-            keyboardType="email-address"
-            onChangeText={(text) => setEmail(text)}
-            autoCapitalize="none"
-          />
+      <TextInput
+        style={styles.input}
+        placeholder="Digite seu e-mail"
+        value={email}
+        keyboardType="email-address"
+        onChangeText={(text) => setEmail(text)}
+        autoCapitalize="none"
+      />
 
-          <Button title="Cadastrar" onPress={handleRegister} />
-        </>
-      )}
+      <Button title="Cadastrar" onPress={handleRegister} />
     </View>
   );
 };
